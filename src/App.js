@@ -7,7 +7,8 @@ import Container from '@mui/material/Container';
 import './App.css';
 import { useState } from 'react';
 import {generator} from './generator';
-
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import copy from "copy-to-clipboard"; 
 
 function App() {
 
@@ -16,25 +17,45 @@ function App() {
     let password = generator();
     generate(password);
   }
+
+  const copyPassword = () => {
+    copy(password);
+    console.log('copied');
+  }
   
+  let style = {
+      borderRadius : "5%",
+      padding : "4px",
+      width:"80%",
+      width : 'auto',
+      marginRight : '15px'
+    }
 
   return (
     <div className="App">
-      <Container component="main" maxWidth="xs">
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            justifyContent : 'space-between',
+            height : '80%',
+            paddingTop : '10%',
+            paddingBottom : '10%'
           }}
-        >
-          
+        > 
           <Typography component="h1" variant="h5">
             Password Generator
           </Typography>
-          <Typography component="h1" variant='h5' sx={{border : "2px solid grey", borderRadius : "5%", padding : "4px" ,width:"80%"}}>
-            {password}
-          </Typography>
+          <Box 
+            sx={{display : 'flex'}}
+          > 
+            <Typography component="h1" variant='h5' sx={style}>
+              {password}
+            </Typography>
+            <ContentCopyIcon fontSize="large" onClick={copyPassword}/>
+          </Box>
+          
           <Box noValidate sx={{ mt: 1 }}>
             <Button
               type="submit"
@@ -46,8 +67,8 @@ function App() {
               Generate
             </Button>
           </Box>
+
         </Box>
-      </Container>
     </div>
   );
 }
