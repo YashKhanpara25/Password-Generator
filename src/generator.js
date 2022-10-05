@@ -14,7 +14,7 @@ export function generator () {
     let pass_string = "";
 
     for(let i=0;i<len;i++){
-        pass_string += String.fromCharCode(random(33,172))
+        pass_string += String.fromCharCode(random(33,126))
     }
     return pass_string;
 }
