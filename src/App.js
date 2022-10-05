@@ -13,22 +13,24 @@ import copy from "copy-to-clipboard";
 function App() {
 
   const [password, generate] = useState("Click Generate!!");
+  const [iscopied,setCopy] = useState(false);
+
   const generatePassword = () => {
     let password = generator();
     generate(password);
+    setCopy(false);
   }
 
   const copyPassword = () => {
     copy(password);
-    console.log('copied');
+    setCopy(true);
   }
   
   let style = {
-      borderRadius : "5%",
       padding : "4px",
       width:"80%",
       width : 'auto',
-      marginRight : '15px'
+      paddingRight : '15px',
     }
 
   return (
@@ -48,12 +50,20 @@ function App() {
             Password Generator
           </Typography>
           <Box 
-            sx={{display : 'flex'}}
+            sx={{display : 'flex' ,
+                border : "2px solid grey" ,
+                borderRadius : "7px",
+                 }}
           > 
             <Typography component="h1" variant='h5' sx={style}>
               {password}
             </Typography>
-            <ContentCopyIcon fontSize="large" onClick={copyPassword}/>
+            <Box backgroundColor = {iscopied?"#4BB543":'none'}
+            onClick={copyPassword} color="success" sx={{display:'flex',justifyContent:'center',alignItems:'center', borderLeft : "2px solid grey", paddingRight:'10px' }}>
+              <ContentCopyIcon  sx={{padding:'3px', }}/>
+              <Typography variant="h6">{iscopied?'copied':'copy'}</Typography>
+            </Box>
+            
           </Box>
           
           <Box noValidate sx={{ mt: 1 }}>

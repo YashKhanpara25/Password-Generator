@@ -9,7 +9,7 @@ function random(low, high){
 }
 
 export function generator () {
-    let len = 15;
+    let len = 20;
 
     let pass_string = "";
 
