@@ -8,8 +8,7 @@ function random(low, high){
     return Math.floor(num);
 }
 
-export function generator () {
-    let len = 20;
+export function generator (len) {
 
     let pass_string = "";
 
